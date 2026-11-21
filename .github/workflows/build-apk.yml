@@ -16,25 +16,21 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v6
 
-      - name: Install Java
+      - name: Set up Java
         uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
 
-      - name: Install Android SDK
-        uses: android-actions/setup-android@v3
-        with:
-          packages: 'platform-tools
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v4
 
       - name: Install required SDK packages
         run: |
-          yes | sdkmanager --licenses
           sdkmanager "platforms;android-36.1" \
-                     "build-tools;36.0.0" \
-                     "platform-tools"
+                     "build-tools;36.0.0"
 
-      - name: Install Gradle
+      - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v6
         with:
           gradle-version: '9.3.1'
@@ -51,9 +47,8 @@ jobs:
             -keysize 2048 \
             -validity 10000
 
-      - name: Build APK
-        run: |
-          gradle --no-daemon :app:assembleDebug
+      - name: Build debug APK
+        run: gradle --no-daemon :app:assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
