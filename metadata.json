@@ -1,0 +1,6 @@
+{
+  "name": "Watermark Studio",
+  "description": "Professional non-destructive image watermarking studio with custom typography, logo branding, real blend modes, tiled patterns, presets, projects, and batch export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
